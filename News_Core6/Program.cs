@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using News_Core6.DI.New;
 using News_Core6.DI.Post;
+using News_Core6.DI.User.Home;
 using News_Core6.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ builder.WebHost.ConfigureAppConfiguration((hostingContext, config) =>
         builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
         builder.Services.AddScoped<INewRepository, NewRepository>();
         builder.Services.AddScoped<IPostRepository, PostRepository>();
+        builder.Services.AddScoped<IHomeRepository, HomeRepository>();
+
         // Trong phương thức ConfigureServices của Startup.cs
         //builder.Services.AddDistributedRedisCache(options =>
         //{
