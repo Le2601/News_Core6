@@ -10,6 +10,13 @@ namespace News_Core6.DI.Post
         PostViewModel Create(News_Core6.Areas.Admin.Data.Post model);
 
         PostViewModel GetById(int id);
+
+
+        
+
+      
+       
+
         
 
     }
