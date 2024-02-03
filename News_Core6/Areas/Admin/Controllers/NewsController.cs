@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using News_Core6.Models;
 namespace News_Core6.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "User")]
     public class NewsController : Controller
     {
         private readonly AppDbContext _context;

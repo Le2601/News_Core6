@@ -1,11 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using News_Core6.DI.User.Home;
 using News_Core6.Models;
 using News_Core6.ModelViews;
+using PagedList.Core;
 using System.Diagnostics;
 
 namespace News_Core6.Controllers
 {
+   
+
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -21,8 +26,9 @@ namespace News_Core6.Controllers
             _homeRepository = homeRepository;
         }
 
-        [ResponseCache(Duration = 60)]
-        public IActionResult Index()
+        //[ResponseCache(Duration = 60)]
+        [AllowAnonymous] 
+        public IActionResult Index(int? page)
         {
             var taikhoan = HttpContext.Session.GetString("AccountId");
 
@@ -35,6 +41,11 @@ namespace News_Core6.Controllers
 
             }
 
+            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
+            var pageSize = 4;
+
+            PagedList<PostViewModel> models = new PagedList<PostViewModel>(_homeRepository.PageListHome(),pageNumber, pageSize);
+
 
 
             var ListPost = _homeRepository.ListPostHome();
@@ -43,13 +54,10 @@ namespace News_Core6.Controllers
 
             ViewBag.OnlyOnePost = _homeRepository.OnlyOnePost();
 
-            return View(ListPost);
+            return View(models);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

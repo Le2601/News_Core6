@@ -11,6 +11,8 @@ using System.Security.Claims;
 
 namespace News_Core6.Controllers
 {
+ 
+    
     public class AccountController : Controller
     {
         private readonly AppDbContext _context;
@@ -196,7 +198,7 @@ namespace News_Core6.Controllers
                     }
 
 
-                    if (kh.RoleId == 2)
+                    if (kh.RoleId != null)
                     {
                         //dang nhap thanh cong
 
