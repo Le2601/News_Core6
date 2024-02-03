@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<form asp-controller="AccountAdmin" asp-action="Login" asp-area="Admin" method="post">
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="text" class="form-control" name="Email" id="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" class="form-control" name="Password" id="password" placeholder="Password">
+    </div>
+    <label for="remember-me" style="color:red">@ViewBag.Error</label><br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+    </div>
+</form>
+
