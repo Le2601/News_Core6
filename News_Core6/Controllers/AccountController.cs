@@ -269,11 +269,11 @@ namespace News_Core6.Controllers
             {
                 HttpContext.SignOutAsync();
                 HttpContext.Session.Remove("AccountId");
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Index", "Home");
             }
         }
 
