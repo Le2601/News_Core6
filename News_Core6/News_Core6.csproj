@@ -23,6 +23,7 @@
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.26" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+    <PackageReference Include="PagedList.Core.Mvc" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

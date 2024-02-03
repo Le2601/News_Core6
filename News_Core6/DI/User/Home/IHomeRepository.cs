@@ -11,5 +11,11 @@ namespace News_Core6.DI.User.Home
         //1 bai viet moi nhat
         PostViewModel OnlyOnePost();
 
+        //pagelist
+
+        IEnumerable<PostViewModel> PageListHome();
+
+
+
     }
 }

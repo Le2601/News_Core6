@@ -58,5 +58,21 @@ namespace News_Core6.DI.User.Home
             };
 
         }
+
+        public IEnumerable<PostViewModel> PageListHome()
+        {
+            var items = _appDbContext.Posts.OrderBy(x => x.Id).Select(x=> new PostViewModel
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Alias = x.Alias,
+                Summary = x.Summary,
+                CreatedDate = x.CreatedDate,
+                DefaultImage = x.DefaultImage
+            });
+
+            return items;
+
+        }
     }
 }

@@ -1,11 +1,37 @@
-﻿@model IEnumerable<News_Core6.ModelViews.PostViewModel>
+﻿@model PagedList.Core.IPagedList<News_Core6.ModelViews.PostViewModel>
 @using News_Core6.ModelViews;
+
 
 @{
     ViewData["Title"] = "Home Page";
     IEnumerable<NewViewModel> IsListNew = ViewBag.ListNew;
     PostViewModel OnePost = ViewBag.OnlyOnePost;
 }
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+            .pagination li a {
+                color: #000;
+                text-decoration: none;
+                padding: 5px 10px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+
+            .pagination li.active a {
+                background-color: #000;
+                color: #fff;
+            }
+</style>
 
 @if (ViewBag.smg != null)
 {
@@ -23,7 +49,7 @@ else
         <div class="card-body">
             <div class="small text-muted">@OnePost.CreatedDate</div>
             <h2 class="card-title">@OnePost.Title</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <p class="card-text">@OnePost.Summary</p>
             <a class="btn btn-primary" href="#!">Read more →</a>
         </div>
     </div>
@@ -44,7 +70,7 @@ else
                             <div class="card-body">
                                 <div class="small text-muted">@item.CreatedDate</div>
                                 <h2 class="card-title h4">@item.Title</h2>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                                <p style="color:black" class="card-text">@item.Summary</p>
                                 <a class="btn btn-primary" href="#!">Read more →</a>
                             </div>
                         </div>
@@ -64,18 +90,13 @@ else
         </div>
     
     <!-- Pagination-->
-    <nav aria-label="Pagination">
-        <hr class="my-0" />
-        <ul class="pagination justify-content-center my-4">
-            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-            <li class="page-item"><a class="page-link" href="#!">2</a></li>
-            <li class="page-item"><a class="page-link" href="#!">3</a></li>
-            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-            <li class="page-item"><a class="page-link" href="#!">15</a></li>
-            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+    @*  note *@
+    <div aria-label="Page navigation example">
+        <ul class="pagination">
+            <pager class="pager-container" list="@Model" asp-controller="Home" asp-action="Index"  />
         </ul>
-    </nav>
+    </div>
+    @*  note *@
 </div>
 
 
@@ -117,3 +138,8 @@ else
         <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
     </div>
 </div>
+
+
+@section Scripts{
+  
+}
