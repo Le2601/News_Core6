@@ -54,6 +54,9 @@ namespace News_Core6.Controllers
 
             ViewBag.OnlyOnePost = _homeRepository.OnlyOnePost();
 
+            //goi y tim kiem
+            ViewBag.ListPostSearch = _context.Posts.ToList();
+
             return View(models);
         }
 

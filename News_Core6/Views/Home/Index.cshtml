@@ -6,6 +6,8 @@
     ViewData["Title"] = "Home Page";
     IEnumerable<NewViewModel> IsListNew = ViewBag.ListNew;
     PostViewModel OnePost = ViewBag.OnlyOnePost;
+
+    List<Post> IsPostSearch = ViewBag.ListPostSearch;
 }
 <style>
     .pagination {
@@ -106,7 +108,17 @@ else
         <div class="card-header">Search</div>
         <div class="card-body">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                <input class="form-control" type="text" list="items" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                <datalist id="items">
+                    
+                   
+                    @foreach (var item in IsPostSearch)
+                    {
+                        <option >@item.Title</option>
+                    }
+
+                </datalist>
+                 
                 <button class="btn btn-primary" id="button-search" type="button">Go!</button>
             </div>
         </div>
